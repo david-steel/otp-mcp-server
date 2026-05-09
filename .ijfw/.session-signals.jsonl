@@ -1,1 +1,1 @@
-{"ts":"2026-05-09T23:09:17Z","error":"npm verbose stack Error: You cannot publish over the previously published versions: 0.1.0.","fail":null}
+{"ts":"2026-05-09T23:20:04Z","error":"Error: validation failed: server returned status 422: {\"title\":\"Unprocessable Entity\",\"status\":422,\"detail\":\"validation failed\",\"errors\":[{\"message\":\"expected length <= 100\",\"location\":\"body.descripti","fail":null}

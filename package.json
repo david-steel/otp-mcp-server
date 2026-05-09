@@ -1,6 +1,7 @@
 {
   "name": "@orgtp/mcp-server",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "mcpName": "io.github.david-steel/otp-mcp-server",
   "publishConfig": {
     "access": "public"
   },

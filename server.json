@@ -1,0 +1,37 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.david-steel/otp-mcp-server",
+  "description": "Public MCP for OTP (orgtp.com). Query cross-org best practices, learnings, publishers, patterns.",
+  "repository": {
+    "url": "https://github.com/david-steel/otp-mcp-server",
+    "source": "github"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@orgtp/mcp-server",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "OTP_API_BASE",
+          "description": "Override the OTP REST API base URL. Defaults to the public production endpoint. Set this if you're pointing at a self-hosted OTP backend or a development server.",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false,
+          "default": "https://orgtp.com/api/v1"
+        },
+        {
+          "name": "OTP_MOCK",
+          "description": "Set to '1' to use built-in fixture data instead of hitting the live API. Useful for local demos when offline or before a backend is wired.",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false
+        }
+      ]
+    }
+  ]
+}
