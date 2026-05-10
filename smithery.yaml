@@ -1,0 +1,20 @@
+runtime: typescript
+build:
+  command: npm install && npm run build
+start:
+  command: node
+  args: ["dist/index.js"]
+  env:
+    OTP_API_BASE: "{config.otpApiBase}"
+    OTP_MOCK: "{config.otpMock}"
+configSchema:
+  type: object
+  required: []
+  properties:
+    otpApiBase:
+      type: string
+      default: "https://orgtp.com/api/v1"
+      description: "Override the OTP REST API base URL. Set for self-hosted or dev backend."
+    otpMock:
+      type: string
+      description: 'Set to "1" to use built-in fixtures instead of the live API. For offline demos.'
