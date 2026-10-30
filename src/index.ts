@@ -242,6 +242,18 @@ const text = (s: string): ToolResult => ({
 const json = (data: unknown): ToolResult =>
   text(JSON.stringify(data, null, 2));
 
+// The shared library is still small, so an empty search is likely. Say so
+// plainly instead of handing the assistant a bare empty list.
+const EMPTY_NOTE =
+  "Nothing published on OTP matches this yet. The shared library is still small. " +
+  "To see a real company running on OTP, open https://orgtp.com/watch.";
+
+const resultsOrNote = (data: unknown): ToolResult => {
+  const d = data as { results?: unknown[]; data?: unknown[] } | null;
+  const items = d?.results ?? d?.data;
+  return Array.isArray(items) && items.length === 0 ? text(EMPTY_NOTE) : json(data);
+};
+
 async function handleTool(name: string, args: Record<string, unknown>): Promise<ToolResult> {
   switch (name) {
     case "otp_about":
@@ -272,11 +284,13 @@ async function handleTool(name: string, args: Record<string, unknown>): Promise<
       );
 
     case "otp_search_best_practices": {
-      const data = await otpFetch("/best-practices/search", {
+      // /search covers every published operating system, the same corpus the
+      // hosted server and the site search use.
+      const data = await otpFetch("/search", {
         q: args.query as string,
         limit: (args.limit as number) ?? 10,
       });
-      return json(data);
+      return resultsOrNote(data);
     }
 
     case "otp_network_learnings": {
@@ -284,7 +298,7 @@ async function handleTool(name: string, args: Record<string, unknown>): Promise<
         since_days: (args.since_days as number) ?? 7,
         limit: (args.limit as number) ?? 20,
       });
-      return json(data);
+      return resultsOrNote(data);
     }
 
     case "otp_list_publishers": {
@@ -305,7 +319,7 @@ async function handleTool(name: string, args: Record<string, unknown>): Promise<
         topic: args.topic as string | undefined,
         limit: (args.limit as number) ?? 15,
       });
-      return json(data);
+      return resultsOrNote(data);
     }
 
     case "otp_rules_for_role": {
@@ -313,7 +327,7 @@ async function handleTool(name: string, args: Record<string, unknown>): Promise<
         role: args.role as string,
         limit: (args.limit as number) ?? 25,
       });
-      return json(data);
+      return resultsOrNote(data);
     }
 
     case "otp_sample_kpis": {
