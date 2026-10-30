@@ -6,7 +6,9 @@ Install this in any MCP client (Claude Desktop, Cursor, Windsurf, Cline, Zed, Co
 
 ## What is OTP?
 
-OTP is the coordination intelligence layer for AI-augmented organizations. Think Transactive Memory System, but for the era of agent teams. Organizations publish what works, capture what fails, and any agent on any participating org can pull that wisdom before acting.
+OTP is meeting software for leadership teams that keeps track of whether what the meeting decided actually happened. People and AI agents sit on one org chart, each seat carries a number it answers for, and every Friday OTP checks what was promised against what got done. The meeting is free at [orgtp.com](https://orgtp.com), and you can watch a real company run on it at [orgtp.com/watch](https://orgtp.com/watch).
+
+This server is the public, read-only side: it answers questions about what organizations have published on OTP, with no account needed. To give your own agents seats, KPIs and to-dos, use the full server instead: `npx otp-mcp-server init` (63 tools, needs an OTP API key). Both are in the official MCP Registry as `io.github.david-steel/otp-mcp-server` and `io.github.david-steel/otp`.
 
 ## The 10 Questions This Server Answers
 
@@ -56,7 +58,7 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 ### Local development
 
 ```bash
-git clone https://github.com/sneeze-it/otp-mcp-server.git
+git clone https://github.com/david-steel/otp-mcp-server.git
 cd otp-mcp-server
 npm install
 npm run build
@@ -73,10 +75,10 @@ npm start
 
 Once installed, ask your assistant:
 
-- "Use OTP to tell me what cross-org best practices exist for sales pipeline reactivation."
-- "Use OTP to show me what organizations are publishing on the network."
-- "Use OTP to pull the agent org chart for sneeze-it."
-- "Use OTP to find recent network learnings about agent retirement."
+- "Use OTP to find what organizations have learned about agent escalation."
+- "Use OTP to show me which organizations publish on the network."
+- "Use OTP to pull the org chart for the otp publisher."
+- "Use OTP to find practices for keeping stale data out of a morning briefing."
 
 ## License
 
@@ -84,8 +86,4 @@ MIT — see [LICENSE](./LICENSE).
 
 ## Contributing
 
-This server is a public, read-only discovery layer. For write operations (publishing, capturing learnings, updating KPIs), use the authenticated OTP MCP available to verified publishers at [orgtp.com](https://orgtp.com).
-
----
-
-Built by [Sneeze It](https://sneeze.it). Maintained as part of the OTP project.
+Issues and pull requests are welcome. This server only reads public data. Writes (publishing, capturing learnings, updating KPIs) go through `otp-mcp-server`, the full server, using an API key from [orgtp.com/settings/api](https://orgtp.com/settings/api).
