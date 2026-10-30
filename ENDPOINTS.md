@@ -278,7 +278,7 @@ GET /api/v1/orgs/{slug}/chart
   },
   "seats": [
     { "name": "Radar", "role": "Chief of Staff", "type": "agent", "color": "olive" },
-    { "name": "Bogdan", "role": "COO", "type": "human" }
+    { "name": "B. T.", "role": "COO", "type": "human" }
   ],
   "note": "Humans and agents share one chart, one scorecard, one accountability layer."
 }

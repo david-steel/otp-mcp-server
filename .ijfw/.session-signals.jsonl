@@ -1,1 +1,0 @@
-{"ts":"2026-05-09T23:20:04Z","error":"Error: validation failed: server returned status 422: {\"title\":\"Unprocessable Entity\",\"status\":422,\"detail\":\"validation failed\",\"errors\":[{\"message\":\"expected length <= 100\",\"location\":\"body.descripti","fail":null}
